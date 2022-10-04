@@ -12,7 +12,8 @@ internal sealed class CatalogContext : ICatalogContext
         var database = client.GetDatabase(section.GetValue<string>("DatabaseName"));
         
         Products = database.GetCollection<Product>(section.GetValue<string>("CollectionName"));
+        CatalogContextSeed.SeedData(Products);
     }
-    
+
     public IMongoCollection<Product> Products { get; init; }
 }
