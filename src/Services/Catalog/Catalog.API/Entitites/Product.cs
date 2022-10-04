@@ -6,14 +6,14 @@ public sealed record Product
 {
     [BsonId]
     [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-    public string Id { get; set; }
+    public string Id { get; init; }
     [BsonElement("Name")]
-    public string Name { get; set; }
-    public string Category { get; set; }
-    public string Summary { get; set; }
-    public string Description { get; set; }
-    public string ImageFile { get; set; }
-    public decimal Price { get; set; }
+    public string Name { get; init; }
+    public string Category { get; init; }
+    public string Summary { get; init; }
+    public string Description { get; init; }
+    public string ImageFile { get; init; }
+    public decimal Price { get; init; }
 
     public Product(string id, string name, string category, string summary, string description, string imageFile, decimal price)
     {
@@ -25,4 +25,5 @@ public sealed record Product
         ImageFile = imageFile;
         Price = price;
     }
+    public Product(){}
 }
