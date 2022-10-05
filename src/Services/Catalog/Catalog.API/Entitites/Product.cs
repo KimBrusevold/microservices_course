@@ -14,16 +14,4 @@ public sealed record Product
     public string Description { get; init; }
     public string ImageFile { get; init; }
     public decimal Price { get; init; }
-
-    public Product(string id, string name, string category, string summary, string description, string imageFile, decimal price)
-    {
-        Id = id;
-        Name = name;
-        Category = category;
-        Summary = summary;
-        Description = description;
-        ImageFile = imageFile;
-        Price = price;
-    }
-    public Product(){}
 }
