@@ -4,7 +4,7 @@ using Microsoft.Toolkit.Diagnostics;
 using MongoDB.Driver;
 
 namespace Catalog.API.Repositories;
-public sealed class ProductRepository : IProductRepository
+internal sealed class ProductRepository : IProductRepository
 {
     private readonly ICatalogContext _context;
 
