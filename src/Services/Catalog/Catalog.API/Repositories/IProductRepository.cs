@@ -1,4 +1,4 @@
-using Catalog.Api.Entities;
+using Catalog.Api.Models;
 
 namespace Catalog.API.Repositories;
 public interface IProductRepository

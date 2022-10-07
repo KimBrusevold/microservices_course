@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Net;
-using Catalog.Api.Entities;
+using Catalog.Api.Models;
 using Catalog.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Catalog.Api.Entities;
+namespace Catalog.Api.Models;
 
 public sealed record Product
 {

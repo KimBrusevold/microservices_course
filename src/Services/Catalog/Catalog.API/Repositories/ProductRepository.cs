@@ -1,4 +1,4 @@
-using Catalog.Api.Entities;
+using Catalog.Api.Models;
 using Catalog.API.Data;
 using Microsoft.Toolkit.Diagnostics;
 using MongoDB.Driver;
