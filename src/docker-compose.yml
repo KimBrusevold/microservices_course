@@ -8,6 +8,9 @@ services:
   
   basketdb:
     image: redis:alpine
+ 
+  discountdb:
+    image: postgres
 
   portainer:
     image: portainer/portainer-ce
