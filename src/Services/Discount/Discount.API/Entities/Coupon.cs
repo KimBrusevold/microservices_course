@@ -13,10 +13,10 @@ public record struct Coupon
 
     public Coupon(int id, string productName, string description, int amount)
     {
-        Id = id;
+        this.Id = id;
         ProductName = productName;
-        Description = description;
-        Amount = amount;
+        this.Description = description;
+        this.Amount = amount;
     }
 
     public static Coupon Default()

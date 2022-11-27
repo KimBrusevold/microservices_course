@@ -27,15 +27,12 @@ public class DiscountRepository : IDiscountRepository
         await using var connection = new NpgsqlConnection(_connString);
         await connection.OpenAsync();
 
-        var coupon = await connection.QueryFirstOrDefaultAsync<Coupon?>(
-            "SELECT * FROM Coupon WHERE ProductName = @ProductName",
+        var sql = "SELECT * FROM Coupon WHERE ProductName LIKE @ProductName";
+        var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>(
+            sql,
             new { ProductName = productName });
-        
-        if(coupon is null)
-            return Coupon.Default();
-        
-        _logger.LogInformation("Returning coupon");
-        return coupon.Value;
+
+        return coupon;
     }
     public async Task<bool> CreateDiscount(Coupon coupon)
     {
@@ -52,6 +49,7 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<bool> DeleteDiscount(string productName)
     {
+
         await using var connection = new NpgsqlConnection(_connString);
         await connection.OpenAsync();
 
@@ -68,9 +66,10 @@ public class DiscountRepository : IDiscountRepository
     {
         await using var connection = new NpgsqlConnection(_connString);
         await connection.OpenAsync();
-
+        
+        var sql = "UPDATE Coupon SET ProductName = @ProductName, Description = @Description, Amount = @Amount WHERE Id = @Id";
         var rowsAffected = await connection.ExecuteAsync(
-            "UPDATE Coupon SET (ProductName, Description, Amount) VALUES (@ProductName, @Description, @Amount) WHERE Id = @Id",
+            sql,
             new {ProductName = coupon.ProductName, Description = coupon.Description, Amount = coupon.Amount, Id = coupon.Id}
         );
 

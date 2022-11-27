@@ -6,7 +6,7 @@ using System.Net;
 namespace Discount.API.Controllers;
 
 [ApiController]
-[Route("[api/v1/controller]")]
+[Route("api/v1/[controller]")]
 public class DiscountController : ControllerBase
 {
 
@@ -34,8 +34,18 @@ public class DiscountController : ControllerBase
         return CreatedAtRoute("GetDiscount", new { coupon.ProductName}, coupon);
     }
 
-    [HttpGet("{productName}", Name = nameof(DeleteDiscount))]
+    
+    [HttpPut(Name = nameof(UpdateDiscount))]
+    [ProducesResponseType(typeof(bool), (int) HttpStatusCode.OK)]
+    public async Task<ActionResult<bool>> UpdateDiscount([FromBody] Coupon coupon)
+    {
+        return Ok(await _repository.UpdateDiscount(coupon));
+    }
+
+    [HttpDelete("{productName}", Name = nameof(DeleteDiscount))]
     [ProducesResponseType(typeof(Coupon), (int) HttpStatusCode.OK)]
     public async Task<ActionResult<bool>> DeleteDiscount(string productName)
-        => Ok(await _repository.DeleteDiscount(productName));
+    {
+        return Ok(await _repository.DeleteDiscount(productName));
+    }
 }
